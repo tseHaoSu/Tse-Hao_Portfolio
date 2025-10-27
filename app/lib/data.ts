@@ -1,3 +1,4 @@
+import { title } from "process";
 import {
   siJavascript,
   siHtml5,
@@ -14,7 +15,13 @@ import {
   siMysql,
   siPostgresql,
   siMongodb,
+  siLinkerd,
+  siInstagram,
+  siGmail,
+  siStandardresume
 } from "simple-icons";
+
+import linkedin from "@/app/assets/icons/linkedin.svg";
 
 export const hobbies = [
   {
@@ -130,5 +137,34 @@ export const toolBoxItems = [
     title: "MongoDB",
     icon: siMongodb,
     customColor: false,
+  },
+];
+
+export const footerLinks = [
+  {
+    title: "Linkedin",
+    href: "https://www.linkedin.com/in/your-profile",
+    icon: linkedin,
+  },
+  {
+    title: "Github",
+    href: "https://github.com/tseHaoSu",
+    icon: siGithub,
+  },
+  {
+    title: "Resume",
+    href: "/Tse_Hao_Su_Eastin_Resume.pdf",
+    download: "Tse_Hao_Su_Eastin_Resume.pdf",
+    icon: siStandardresume,
+  },
+  {
+    title: "Instagram",
+    href: "https://www.instagram.com/eastin.su/",
+    icon: siInstagram,
+  },
+  {
+    title: "Email",
+    href: "mailto:tsehaosu@gmail.com",
+    icon: siGmail,
   },
 ];
