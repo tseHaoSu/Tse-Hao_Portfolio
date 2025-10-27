@@ -1,6 +1,6 @@
 import Card from "@/app/components/Card";
 import Image from "next/image";
-import map from "@/app/assets/images/map.png";
+import map from "@/app/assets/images/melbourne.png";
 import smileMemoji from "@/app/assets/images/memoji-smile.png";
 
 export const MapCard = () => {
