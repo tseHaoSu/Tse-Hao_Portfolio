@@ -8,6 +8,7 @@ import grainImage from "@/app/assets/images/grain.jpg";
 import { ArrowUpRight, BadgeCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import SectionHeader from "@/app/components/SectionHeader";
 
 const portfolioProjects = [
   {
@@ -88,11 +89,11 @@ const ProjectCard = ({
       }`}
       style={{
         top: `${index * 20}px`,
-        zIndex: portfolioProjects.length - index
+        zIndex: portfolioProjects.length - index,
       }}
       whileHover={{
         scale: 1.02,
-        transition: { duration: 0.3 }
+        transition: { duration: 0.3 },
       }}
     >
       <div
@@ -126,7 +127,9 @@ const ProjectCard = ({
                 key={idx}
                 className="flex items-center gap-2 md:gap-3 text-sm md:text-base lg:text-lg text-white/70"
                 initial={{ opacity: 0, x: -20 }}
-                animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                animate={
+                  isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                }
                 transition={{ delay: idx * 0.1 + 0.3, duration: 0.5 }}
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
               >
@@ -164,18 +167,12 @@ const ProjectCard = ({
 
 const Projects = () => {
   return (
-    <div className="container py-16 md:py-20 lg:py-28">
-      <p className="uppercase font-semibold tracking-widest gradient-text-emerald text-center text-xs md:text-sm">
-        Here are some of my recent projects:
-      </p>
-      <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-center mt-4 md:mt-5">
-        Featured Projects
-      </h2>
-      <p className="text-center text-white/60 mt-4 md:mt-6 max-w-md lg:max-w-lg mx-auto text-sm md:text-base">
-        See how I transformed these ideas into reality: blah blah blah blah blah
-        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-        blah blah blah blah blah blah.
-      </p>
+    <div id="projects" className="container py-16 md:py-20 lg:py-28">
+      <SectionHeader
+        title="Featured Projects"
+        eyebrow="Here are some of my recent projects:"
+        description="Check out my collection of full-stack projects—complete with rock-solid authentication, AI superpowers, and architectures that won't break when things get real. Built for scale, crafted with care."
+      />
       {/**card box */}
       <div className="flex flex-col gap-8 md:gap-12 lg:gap-16 mt-10 md:mt-16 lg:mt-20">
         {portfolioProjects.map((project, index) => (

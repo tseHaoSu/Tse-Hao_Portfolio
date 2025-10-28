@@ -9,7 +9,7 @@ const Footer = () => {
       </div>
       <div className="container border-t border-white/15 py-6 text-sm flex flex-col md:flex-row md:justify-between items-center gap-8">
         <div className="text-white/40">
-          &copy; 2025 My Portfolio. All rights reserved.
+          &copy; 2025 Tse-Hao Su. All rights reserved.
         </div>
         <nav className="flex flex-col md:flex-row md:justify-end items-center gap-8">
           {footerLinks.map((link) => (

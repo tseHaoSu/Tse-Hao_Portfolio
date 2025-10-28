@@ -3,7 +3,7 @@ import grainImage from "@/app/assets/images/grain.jpg";
 
 const Contact = () => {
   return (
-    <div className="py-16 lg:py-24 container pt-12">
+    <div id="contact" className="py-16 lg:py-24 container pt-12">
       <div className="bg-linear-to-r from-emerald-400 to-sky-400 text-gray-900 py-8 px-10 md:py-12 lg:py-16 md:px-16 lg:px-20 rounded-3xl text-center md:text-left overflow-hidden relative z-0">
         <div
           className="absolute inset-0 opacity-10 -z-10"

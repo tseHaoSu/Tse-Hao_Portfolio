@@ -11,27 +11,27 @@ import { useState, useEffect } from "react";
 
 const testimonials = [
   {
-    name: "Alex Turner",
-    position: "Marketing Manager @ TechStartups",
-    text: "Alex was instrumental in transforming our website into a powerful marketing tool. His attention to detail and ability to understand our brand is exceptional. We're thrilled with the results!",
+    name: "Terrance Liu",
+    position: "Product Designer @ LearnTech Solutions",
+    text: "The StillSkilled platform is incredibly well-designed! The interactive learning modules are intuitive and engaging, and the AI resume builder helped me create a tailored resume in minutes. The multiple features work seamlessly together.",
     avatar: memojiAvatar1,
   },
   {
-    name: "Olivia Green",
-    position: "Head of Design @ GreenLeaf",
-    text: "Working with Alex was a pleasure. His expertise in frontend development brought our designs to life in a way we never imagined. The website has exceeded our expectations.",
+    name: "Tony Tang",
+    position: "Data Analyst @ DevOps Pro",
+    text: "The bug tracker application transformed how our team manages issues. The interactive charts provide clear insights at a glance, and the interface makes tracking and prioritizing bugs effortless. Highly recommend!",
     avatar: memojiAvatar2,
   },
   {
-    name: "Daniel White",
-    position: "CEO @ InnovateCo",
-    text: "Alex's ability to create seamless user experiences is unmatched. Our website has seen a significant increase in conversions since launching the new design. We couldn't be happier.",
+    name: "Charlene",
+    position: "Marketing Manager @ Creative Studios",
+    text: "The Miro-clone collaboration tool is a game-changer! Being able to edit with up to four users in real-time sync is smooth and responsive. The design is clean and the features are exactly what our team needed.",
     avatar: memojiAvatar3,
   },
   {
-    name: "Emily Carter",
-    position: "Product Manager @ GlobalTech",
-    text: "Alex is a true frontend wizard. He took our complex product and transformed it into an intuitive and engaging user interface. We're already seeing positive feedback from our customers.",
+    name: "Mizuki Sato",
+    position: "UX Researcher @ Innovation Labs",
+    text: "I'm impressed by the attention to detail across all three applications. Each one features an intuitive, interactive design that makes complex tasks feel simple. The real-time collaboration and data visualization are particularly outstanding.",
     avatar: memojiAvatar4,
   },
 ];
@@ -98,13 +98,12 @@ const Testimonials = () => {
   }, [totalPages, isPaused]);
 
   return (
-    <div className="container py-16 md:py-20 lg:py-28">
+    <div id="Testimonials" className="container py-16 md:py-20 lg:py-28">
       <SectionHeader
-        title="What Clients Say"
+        title="What People Say About Me"
         eyebrow="Testimonials"
         description="Hear from some of the clients I've had the pleasure of working with."
       />
-
       {/* Mobile: flex-col, Desktop: horizontal carousel */}
       <div className="mt-10 md:mt-16 lg:mt-20">
         {/* Mobile view - stacked */}

@@ -6,7 +6,10 @@ import starIcon from "@/app/assets/icons/star.svg";
 
 const Hero = () => {
   return (
-    <div className="py-32 md:py-48 lg:min-h-screen lg:flex lg:items-center relative z-0 overflow-hidden">
+    <div
+      id="home"
+      className="py-32 md:py-48 lg:min-h-screen lg:flex lg:items-center relative z-0 overflow-hidden"
+    >
       <div
         className="absolute inset-0 opacity-5 -z-30"
         style={{
@@ -214,9 +217,12 @@ const Hero = () => {
             <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl tracking-tight">
               Welcome to My Portfolio
             </h1>
-            <p className="mt-4 text-white/60 md:text-lg max-w-md mx-auto">
-              I&apos;m a passionate developer specializing in creating beautiful
-              and functional web applications.
+            <p className="mt-4 text-white/60 md:text-lg max-w-2xl mx-auto">
+              I&apos;m a coffee-fueled fullstack developer who turns complex
+              ideas into bite-sized, beautiful experiences. When I&apos;m not
+              crafting sleek UIs or obsessing over clean code at 2am, I&apos;m
+              integrating cutting-edge AI to build web applications that just
+              work—and look great doing it.
             </p>
             <div className="flex flex-col md:flex-row items-center gap-4 mt-8">
               <button className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl hover:bg-white/10 transition group">

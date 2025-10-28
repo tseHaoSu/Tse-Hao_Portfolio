@@ -6,7 +6,7 @@ import { MapCard } from "@/app/components/MapCard";
 
 const About = () => {
   return (
-    <div className="container py-16">
+    <div id="about" className="container py-16">
       <SectionHeader
         eyebrow="about me"
         title="A bit about myself"
