@@ -133,7 +133,7 @@ const ProjectCard = ({
                 transition={{ delay: idx * 0.1 + 0.3, duration: 0.5 }}
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
               >
-                <BadgeCheck className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 flex-shrink-0" />
+                <BadgeCheck className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 hrink-0" />
                 <span>{result.title}</span>
               </motion.li>
             ))}
