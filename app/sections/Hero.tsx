@@ -20,8 +20,9 @@ const Hero = () => {
         <div className="hero-ring size-[1020px] border-emerald-300/[0.03] shadow-[0_0_40px_0_inset] shadow-emerald-300/[0.03]"></div>
         <div className="hero-ring size-[1220px] border-emerald-300/[0.02] shadow-[0_0_20px_0_inset] shadow-emerald-300/[0.02]"></div>
 
-        {/* Stars scattered across the rings */}
-        <div className="absolute size-8 top-[18%] left-[25%] opacity-20 star-pulse">
+        {/* Stars orbiting around the rings - 12 total: 30% large, 30% medium, 40% small */}
+        {/* Ring 1 - 620px diameter (310px radius) - 3 stars */}
+        <div className="absolute orbit-ring-1 size-16 opacity-25 star-pulse">
           <Image
             src={starIcon}
             alt=""
@@ -33,8 +34,8 @@ const Hero = () => {
           />
         </div>
         <div
-          className="absolute size-12 top-[10%] left-[50%] opacity-25 star-pulse"
-          style={{ animationDelay: "0.5s" }}
+          className="absolute orbit-ring-1 size-12 opacity-30 star-pulse"
+          style={{ animationDelay: "-7s" }}
         >
           <Image
             src={starIcon}
@@ -47,8 +48,24 @@ const Hero = () => {
           />
         </div>
         <div
-          className="absolute size-6 top-[35%] left-[68%] opacity-30 star-pulse"
-          style={{ animationDelay: "1s" }}
+          className="absolute orbit-ring-1 size-8 opacity-35 star-pulse"
+          style={{ animationDelay: "-14s" }}
+        >
+          <Image
+            src={starIcon}
+            alt=""
+            className="w-full h-full"
+            style={{
+              filter:
+                "invert(78%) sepia(23%) saturate(1000%) hue-rotate(98deg)",
+            }}
+          />
+        </div>
+
+        {/* Ring 2 - 820px diameter (410px radius) - 3 stars */}
+        <div
+          className="absolute orbit-ring-2 size-14 opacity-20 star-pulse"
+          style={{ animationDelay: "-3s" }}
         >
           <Image
             src={starIcon}
@@ -61,8 +78,8 @@ const Hero = () => {
           />
         </div>
         <div
-          className="absolute size-10 top-[52%] left-[80%] opacity-20 star-pulse"
-          style={{ animationDelay: "1.5s" }}
+          className="absolute orbit-ring-2 size-10 opacity-25 star-pulse"
+          style={{ animationDelay: "-12s" }}
         >
           <Image
             src={starIcon}
@@ -75,8 +92,24 @@ const Hero = () => {
           />
         </div>
         <div
-          className="absolute size-7 bottom-[25%] left-[10%] opacity-25 star-pulse"
-          style={{ animationDelay: "2s" }}
+          className="absolute orbit-ring-2 size-7 opacity-30 star-pulse"
+          style={{ animationDelay: "-18s" }}
+        >
+          <Image
+            src={starIcon}
+            alt=""
+            className="w-full h-full"
+            style={{
+              filter:
+                "invert(78%) sepia(23%) saturate(1000%) hue-rotate(98deg)",
+            }}
+          />
+        </div>
+
+        {/* Ring 3 - 1020px diameter (510px radius) - 3 stars */}
+        <div
+          className="absolute orbit-ring-3 size-16 opacity-25 star-pulse"
+          style={{ animationDelay: "-5s" }}
         >
           <Image
             src={starIcon}
@@ -89,8 +122,8 @@ const Hero = () => {
           />
         </div>
         <div
-          className="absolute size-5 bottom-[18%] left-[35%] opacity-35 star-pulse"
-          style={{ animationDelay: "2.5s" }}
+          className="absolute orbit-ring-3 size-13 opacity-20 star-pulse"
+          style={{ animationDelay: "-15s" }}
         >
           <Image
             src={starIcon}
@@ -103,8 +136,24 @@ const Hero = () => {
           />
         </div>
         <div
-          className="absolute size-9 bottom-[30%] right-[15%] opacity-20 star-pulse"
-          style={{ animationDelay: "3s" }}
+          className="absolute orbit-ring-3 size-9 opacity-30 star-pulse"
+          style={{ animationDelay: "-22s" }}
+        >
+          <Image
+            src={starIcon}
+            alt=""
+            className="w-full h-full"
+            style={{
+              filter:
+                "invert(78%) sepia(23%) saturate(1000%) hue-rotate(98deg)",
+            }}
+          />
+        </div>
+
+        {/* Ring 4 - 1220px diameter (610px radius) - 3 stars */}
+        <div
+          className="absolute orbit-ring-4 size-14 opacity-20 star-pulse"
+          style={{ animationDelay: "-8s" }}
         >
           <Image
             src={starIcon}
@@ -117,8 +166,8 @@ const Hero = () => {
           />
         </div>
         <div
-          className="absolute size-6 top-[28%] right-[22%] opacity-30 star-pulse"
-          style={{ animationDelay: "3.5s" }}
+          className="absolute orbit-ring-4 size-12 opacity-25 star-pulse"
+          style={{ animationDelay: "-20s" }}
         >
           <Image
             src={starIcon}
@@ -131,22 +180,8 @@ const Hero = () => {
           />
         </div>
         <div
-          className="absolute size-11 top-[48%] right-[8%] opacity-25 star-pulse"
-          style={{ animationDelay: "0.8s" }}
-        >
-          <Image
-            src={starIcon}
-            alt=""
-            className="w-full h-full"
-            style={{
-              filter:
-                "invert(78%) sepia(23%) saturate(1000%) hue-rotate(98deg)",
-            }}
-          />
-        </div>
-        <div
-          className="absolute size-8 bottom-[42%] left-[42%] opacity-20 star-pulse"
-          style={{ animationDelay: "1.3s" }}
+          className="absolute orbit-ring-4 size-8 opacity-30 star-pulse"
+          style={{ animationDelay: "-28s" }}
         >
           <Image
             src={starIcon}

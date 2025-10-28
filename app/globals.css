@@ -80,6 +80,36 @@
       opacity: 0.2;
     }
   }
+
+  /* Orbital rotation animations */
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
+    }
+  }
+
+  .orbit-ring-1 {
+    animation: orbit 20s linear infinite;
+    --orbit-radius: 310px;
+  }
+
+  .orbit-ring-2 {
+    animation: orbit 25s linear infinite;
+    --orbit-radius: 410px;
+  }
+
+  .orbit-ring-3 {
+    animation: orbit 30s linear infinite;
+    --orbit-radius: 510px;
+  }
+
+  .orbit-ring-4 {
+    animation: orbit 35s linear infinite;
+    --orbit-radius: 610px;
+  }
 }
 
 @layer base {
@@ -145,6 +175,9 @@
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+  }
+  html {
+    overflow-x: hidden;
   }
 }
 
