@@ -13,7 +13,25 @@ const calistoga = Calistoga({
 
 export const metadata: Metadata = {
   title: "Tse-Hao (Eastin) Su - Portfolio",
-  description: "Created with the help of Frontend Tribe",
+  description:
+    "Full Stack Developer specializing in Next.js, React, and modern web technologies. Building exceptional digital experiences.",
+  openGraph: {
+    title: "Tse-Hao (Eastin) Su - Full Stack Developer",
+    description:
+      "Full Stack Developer specializing in Next.js, React, and modern web technologies",
+    url: "https://tsehaosu.com",
+    siteName: "Tse-Hao Su Portfolio",
+    images: [
+      {
+        url: "/Meta.png",
+        width: 1200,
+        height: 630,
+        alt: "Tse-Hao Su Portfolio Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
