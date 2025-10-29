@@ -46,7 +46,7 @@ export const CustomCursor = () => {
     <>
       {/* Mouse pointer - follows instantly */}
       <div
-        className="fixed top-0 left-0 pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 pointer-events-none z-999"
         style={{
           transform: `translateX(${position.x}px) translateY(${position.y}px)`,
         }}

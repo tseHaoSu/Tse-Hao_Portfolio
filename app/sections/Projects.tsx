@@ -1,53 +1,17 @@
 "use client";
 
-import Image from "next/image";
-import darkSaasLandingPage from "@/app/assets/images/dark-saas-landing-page.png";
-import lightSaasLandingPage from "@/app/assets/images/light-saas-landing-page.png";
-import aiStartupLandingPage from "@/app/assets/images/ai-startup-landing-page.png";
 import grainImage from "@/app/assets/images/grain.jpg";
-import { ArrowUpRight, BadgeCheck } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import SectionHeader from "@/app/components/SectionHeader";
+import { portfolioProjects } from "@/app/lib/data";
+import { motion } from "framer-motion";
+import { ArrowUpRight, BadgeCheck } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
-const portfolioProjects = [
-  {
-    company: "Acme Corp",
-    year: "2022",
-    title: "Dark Saas Landing Page",
-    results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
-    ],
-    link: "https://youtu.be/4k7IdSLxh6w",
-    image: darkSaasLandingPage,
-  },
-  {
-    company: "Innovative Co",
-    year: "2021",
-    title: "Light Saas Landing Page",
-    results: [
-      { title: "Boosted sales by 20%" },
-      { title: "Expanded customer reach by 35%" },
-      { title: "Increased brand awareness by 15%" },
-    ],
-    link: "https://youtu.be/7hi5zwO75yc",
-    image: lightSaasLandingPage,
-  },
-  {
-    company: "Quantum Dynamics",
-    year: "2023",
-    title: "AI Startup Landing Page",
-    results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
-    ],
-    link: "https://youtu.be/Z7I5uSRHMHg",
-    image: aiStartupLandingPage,
-  },
-];
+// Helper function to get consistent image sizing classes
+const getImageClasses = () => {
+  return "w-full h-auto lg:w-full lg:h-[400px] lg:object-cover";
+};
 
 const ProjectCard = ({
   project,
@@ -157,7 +121,7 @@ const ProjectCard = ({
           <Image
             src={project.image}
             alt={project.title}
-            className="w-full h-auto lg:w-[110%]"
+            className={getImageClasses()}
           />
         </motion.div>
       </div>

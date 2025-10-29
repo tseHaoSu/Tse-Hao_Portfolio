@@ -1,4 +1,3 @@
-import { title } from "process";
 import {
   siJavascript,
   siHtml5,
@@ -18,10 +17,14 @@ import {
   siLinkerd,
   siInstagram,
   siGmail,
-  siStandardresume
+  siStandardresume,
 } from "simple-icons";
 
 import linkedin from "@/app/assets/icons/linkedin.svg";
+
+import stillskilled from "@/app/assets/images/stillskilled.png";
+import miroClone from "@/app/assets/images/miro.png";
+import bugspot from "@/app/assets/images/bugspot.png";
 
 export const hobbies = [
   {
@@ -197,7 +200,7 @@ export const toolBoxItems = [
 export const footerLinks = [
   {
     title: "Linkedin",
-    href: "https://www.linkedin.com/in/your-profile",
+    href: "https://www.linkedin.com/in/tsehaosu",
     icon: linkedin,
   },
   {
@@ -220,5 +223,44 @@ export const footerLinks = [
     title: "Email",
     href: "mailto:tsehaosu@gmail.com",
     icon: siGmail,
+  },
+];
+
+export const portfolioProjects = [
+  {
+    company: "Personal Project",
+    year: "2025",
+    title: "StillSkilled - Gamified Learning Platform",
+    results: [
+      { title: "Built search for 1,000+ jobs across Australia" },
+      { title: "Integrated LLaMA AI for resume building" },
+      { title: "Deployed with Duolingo-style gamification" },
+    ],
+    link: "https://www.still-skilled.org/",
+    image: stillskilled,
+  },
+  {
+    company: "Personal Project",
+    year: "2025",
+    title: "Miro Clone - Collaborative Whiteboard",
+    results: [
+      { title: "Real-time editing for 4 simultaneous users" },
+      { title: "Infinite canvas with drawing tools" },
+      { title: "Live cursor tracking and sync updates" },
+    ],
+    link: "https://miro-clone-nine-rosy.vercel.app/",
+    image: miroClone,
+  },
+  {
+    company: "Personal Project",
+    year: "2025",
+    title: "Bugspot - Bug Tracking Application",
+    results: [
+      { title: "Team collaboration and issue resolution" },
+      { title: "Google OAuth authentication" },
+      { title: "Comprehensive analytics dashboard" },
+    ],
+    link: "https://tsehaosu.com/bugspot",
+    image: bugspot,
   },
 ];
