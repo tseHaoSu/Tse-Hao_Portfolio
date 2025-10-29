@@ -22,10 +22,13 @@ const Contact = () => {
             </p>
           </div>
           <div className="shrink-0">
-            <button className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 hover:bg-gray-800 transition-colors">
+            <a
+              href="mailto:tsehaosu@gmail.com"
+              className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 hover:bg-gray-800 transition-colors"
+            >
               <span className="font-semibold">Contact Me</span>
               <ArrowUpRight className="h-5 w-5" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

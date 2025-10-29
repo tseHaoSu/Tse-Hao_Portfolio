@@ -1,23 +1,31 @@
-import React from "react";
 import Image from "next/image";
 import { footerLinks } from "../lib/data";
 
 const Footer = () => {
+  const isExternalLink = (href: string) => href.startsWith("http");
+
+  const getExternalLinkProps = (href: string) =>
+    isExternalLink(href)
+      ? { target: "_blank", rel: "noopener noreferrer" }
+      : {};
+
   return (
-    <footer className="relative -z-10">
-      <div className="absolute h-[400px] w-[1600px] bottom-0 left-1/2 -translate-x-1/2 bg-emerald-300/30 mask-[radial-gradient(50%_50%_at_bottom,black,transparent)] pointer-events-none -z-10">
-      </div>
+    <footer className="relative">
+      <div className="absolute h-[400px] w-[1600px] bottom-0 left-1/2 -translate-x-1/2 bg-emerald-300/30 mask-[radial-gradient(50%_50%_at_bottom,black,transparent)] pointer-events-none -z-10" />
+
       <div className="container border-t border-white/15 py-6 text-sm flex flex-col md:flex-row md:justify-between items-center gap-8">
         <div className="text-white/40">
           &copy; 2025 Tse-Hao Su. All rights reserved.
         </div>
+
         <nav className="flex flex-col md:flex-row md:justify-end items-center gap-8">
           {footerLinks.map((link) => (
             <a
               key={link.title}
               href={link.href}
               download={link.download}
-              className="inline-flex items-center gap-1.5 text-white/60"
+              {...getExternalLinkProps(link.href)}
+              className="inline-flex items-center gap-1.5 text-white/60 hover:text-white transition-colors duration-200"
             >
               <span>{link.title}</span>
               {link.icon && (
@@ -38,7 +46,7 @@ const Footer = () => {
                       className="w-5 h-5"
                       fill="currentColor"
                     >
-                      <title className="font-semibold">{link.title}</title>
+                      <title>{link.title}</title>
                       <path d={link.icon.path} />
                     </svg>
                   )}

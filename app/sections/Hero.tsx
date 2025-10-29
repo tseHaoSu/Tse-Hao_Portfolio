@@ -1,10 +1,29 @@
+"use client";
+
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import memojiImage from "@/app/assets/images/memoji-computer.png";
 import grainImage from "@/app/assets/images/grain.jpg";
 import starIcon from "@/app/assets/icons/star.svg";
+import { motion } from "framer-motion";
 
 const Hero = () => {
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+    targetId: string
+  ) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      const offsetTop = element.offsetTop;
+      window.scrollTo({
+        top: offsetTop - 80,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div
       id="home"
@@ -20,8 +39,8 @@ const Hero = () => {
       <div className="absolute inset-0 -z-20 flex items-center justify-center">
         <div className="hero-ring size-[620px] border-2 shadow-[0_0_80px_0_inset] shadow-emerald-300/5"></div>
         <div className="hero-ring size-[820px] shadow-[0_0_60px_0_inset] shadow-emerald-300/5"></div>
-        <div className="hero-ring size-[1020px] border-emerald-300/[0.03] shadow-[0_0_40px_0_inset] shadow-emerald-300/[0.03]"></div>
-        <div className="hero-ring size-[1220px] border-emerald-300/[0.02] shadow-[0_0_20px_0_inset] shadow-emerald-300/[0.02]"></div>
+        <div className="hero-ring size-[1020px] border-emerald-300/3 shadow-[0_0_40px_0_inset] shadow-emerald-300/3"></div>
+        <div className="hero-ring size-[1220px] border-emerald-300/2 shadow-[0_0_20px_0_inset] shadow-emerald-300/2"></div>
 
         {/* Stars orbiting around the rings - 12 total: 30% large, 30% medium, 40% small */}
         {/* Ring 1 - 620px diameter (310px radius) - 3 stars */}
@@ -125,7 +144,7 @@ const Hero = () => {
           />
         </div>
         <div
-          className="absolute orbit-ring-3 size-13 opacity-20 star-pulse"
+          className="absolute orbit-ring-3 size-12 opacity-20 star-pulse"
           style={{ animationDelay: "-15s" }}
         >
           <Image
@@ -225,25 +244,29 @@ const Hero = () => {
               work—and look great doing it.
             </p>
             <div className="flex flex-col md:flex-row items-center gap-4 mt-8">
-              <button className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl hover:bg-white/10 transition group">
+              <motion.button
+                onClick={(e) => handleScroll(e, "projects")}
+                className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl hover:bg-white/10 transition group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <span className="font-semibold">Explore my work</span>
                 <ArrowDown className="w-4 h-4 group-hover:animate-bounce" />
-              </button>
-              <button className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 px-6 h-12 rounded-xl hover:bg-white/90 transition group">
+              </motion.button>
+              <motion.button
+                onClick={(e) => handleScroll(e, "contact")}
+                className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 px-6 h-12 rounded-xl hover:bg-white/90 transition group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <span className="hand-wave group-hover:animate-[wave-spin_0.6s_ease-in-out]">
                   ✋
                 </span>
                 <span className="font-semibold">Let&apos;s connect!</span>
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Scroll indicator - only visible on lg screens */}
-      <div className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 animate-bounce">
-        <span className="text-white/60 text-sm font-medium">Scroll down</span>
-        <ArrowDown className="w-6 h-6 text-emerald-400" />
       </div>
     </div>
   );
