@@ -19,7 +19,7 @@ const words = [
 const Tape = () => {
   return (
     <div className="py-16 lg:py-24">
-      <div className="bg-gradient-to-r from-emerald-300 to-sky-400 overflow-x-clip py-3 -rotate-3 -mx-1">
+      <div className="bg-gradient-to-r from-emerald-300 to-sky-400 overflow-x-clip py-3 -rotate-3">
         <motion.div
           className="flex gap-4"
           animate={{
