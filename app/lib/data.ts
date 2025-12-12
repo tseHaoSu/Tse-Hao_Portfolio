@@ -25,6 +25,7 @@ import linkedin from "@/app/assets/icons/linkedin.svg";
 import stillskilled from "@/app/assets/images/stillskilled.png";
 import miroClone from "@/app/assets/images/miro.png";
 import bugspot from "@/app/assets/images/bugspot.png";
+import locoAi from "@/app/assets/images/loco.png";
 
 export const hobbies = [
   {
@@ -227,6 +228,18 @@ export const footerLinks = [
 ];
 
 export const portfolioProjects = [
+  {
+    company: "Personal Project",
+    year: "2025",
+    title: "Loco AI - Customer Service Automation",
+    results: [
+      { title: "RAG-powered knowledge base with drag-and-drop upload" },
+      { title: "Vapi integration for AI voice call support" },
+      { title: "Real-time conversation monitoring dashboard" },
+    ],
+    link: "https://loco-web-gules.vercel.app/",
+    image: locoAi,
+  },
   {
     company: "Personal Project",
     year: "2025",
