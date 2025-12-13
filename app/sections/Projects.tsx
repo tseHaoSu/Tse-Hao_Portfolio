@@ -3,7 +3,7 @@
 import grainImage from "@/app/assets/images/grain.jpg";
 import SectionHeader from "@/app/components/SectionHeader";
 import { portfolioProjects } from "@/app/lib/data";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, BadgeCheck } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -16,12 +16,34 @@ const getImageClasses = () => {
 const ProjectCard = ({
   project,
   index,
+  totalProjects,
 }: {
   project: (typeof portfolioProjects)[0];
   index: number;
+  totalProjects: number;
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+
+  // Check for mobile on mount
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Scroll-based animations for stacking effect
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Scale down as the card scrolls up (from 1 to 0.9)
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+  // Slight opacity reduction for depth effect
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,20 +63,25 @@ const ProjectCard = ({
     return () => observer.disconnect();
   }, []);
 
+  // Calculate sticky top position - increases for each card to create stacking
+  const stickyTop = 80 + index * 20;
+
   return (
     <motion.div
       ref={cardRef}
-      className={`project-card sticky ${
+      className={`project-card sticky origin-top ${
         isVisible
-          ? "opacity-100 translate-x-0 scale-100"
-          : index % 2 === 0
-          ? "opacity-0 -translate-x-32 scale-95"
-          : "opacity-0 translate-x-32 scale-95"
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-10"
       }`}
       style={{
-        top: `${index * 20}px`,
-        zIndex: portfolioProjects.length - index,
+        top: `${stickyTop}px`,
+        zIndex: index + 1,
+        // Only apply scroll-based transforms on desktop
+        scale: isMobile ? 1 : scale,
+        opacity: isMobile ? (isVisible ? 1 : 0) : opacity,
       }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div
         className="project-card-grain"
@@ -127,9 +154,15 @@ const Projects = () => {
         eyebrow="Here are some of my recent projects:"
         description="Check out my collection of full-stack projects—complete with rock-solid authentication, AI superpowers, and architectures that won't break when things get real. Built for scale, crafted with care."
       />
-      <div className="flex flex-col gap-6 md:gap-10 lg:gap-10 mt-8 md:mt-12 lg:mt-10">
+      {/* Wrapper with extra padding at bottom for stacking scroll distance */}
+      <div className="flex flex-col gap-6 md:gap-10 lg:gap-10 mt-8 md:mt-12 lg:mt-10 lg:pb-[20vh]">
         {portfolioProjects.map((project, index) => (
-          <ProjectCard key={index} project={project} index={index} />
+          <ProjectCard
+            key={index}
+            project={project}
+            index={index}
+            totalProjects={portfolioProjects.length}
+          />
         ))}
       </div>
     </section>
