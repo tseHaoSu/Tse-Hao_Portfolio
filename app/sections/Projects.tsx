@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
 
 // Helper function to get consistent image sizing classes - mobile-first with aspect ratio
 const getImageClasses = () => {
-  return "w-full aspect-[4/3] object-cover md:aspect-[16/10] lg:aspect-auto lg:h-[400px]";
+  return "w-full aspect-[4/3] object-cover md:aspect-[16/10] lg:aspect-auto lg:h-[320px]";
 };
 
 const ProjectCard = ({
@@ -60,9 +60,9 @@ const ProjectCard = ({
         className="project-card-grain"
         style={{ backgroundImage: `url(${grainImage.src})` }}
       ></div>
-      <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-12">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-8">
         {/* Image - shown first on mobile for visual impact */}
-        <div className="relative z-10 -mx-4 -mt-4 mb-5 md:-mx-6 md:-mt-5 md:mb-6 lg:order-2 lg:m-0 lg:-mr-[40%] lg:-mb-8 lg:ml-4 overflow-hidden rounded-b-xl lg:rounded-xl">
+        <div className="relative z-10 -mx-4 -mt-4 mb-5 md:-mx-6 md:-mt-5 md:mb-6 lg:order-2 lg:m-0 lg:-mr-[35%] lg:-mb-6 lg:ml-2 overflow-hidden rounded-b-xl lg:rounded-xl">
           <Image
             src={project.image}
             alt={project.title}
@@ -90,12 +90,12 @@ const ProjectCard = ({
           >
             {project.title}
           </motion.h3>
-          <hr className="border-t border-white/10 mt-4 md:mt-5" />
-          <ul className="flex flex-col gap-2.5 md:gap-3 mt-4 md:mt-5">
+          <hr className="border-t border-white/10 mt-3 md:mt-4 lg:mt-3" />
+          <ul className="flex flex-col gap-2 md:gap-2.5 lg:gap-2 mt-3 md:mt-4 lg:mt-3">
             {project.results.map((result, idx) => (
               <motion.li
                 key={idx}
-                className="flex items-start gap-2.5 text-[15px] md:text-base lg:text-lg text-white/75 leading-relaxed"
+                className="flex items-start gap-2.5 text-[15px] md:text-base lg:text-base text-white/75 leading-relaxed"
                 initial={{ opacity: 0, x: -20 }}
                 animate={
                   isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
@@ -107,7 +107,7 @@ const ProjectCard = ({
               </motion.li>
             ))}
           </ul>
-          <a href={project.link} className="block mt-5 md:mt-6">
+          <a href={project.link} className="block mt-4 md:mt-5 lg:mt-4">
             <button className="btn-gradient-border group">
               <span className="gradient-text-emerald">View Project</span>
               <ArrowUpRight className="w-4 h-4 text-emerald-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -121,13 +121,13 @@ const ProjectCard = ({
 
 const Projects = () => {
   return (
-    <section id="projects" className="container py-12 md:py-16 lg:py-24">
+    <section id="projects" className="container py-12 md:py-16 lg:py-16">
       <SectionHeader
         title="Featured Projects"
         eyebrow="Here are some of my recent projects:"
         description="Check out my collection of full-stack projects—complete with rock-solid authentication, AI superpowers, and architectures that won't break when things get real. Built for scale, crafted with care."
       />
-      <div className="flex flex-col gap-6 md:gap-10 lg:gap-14 mt-8 md:mt-12 lg:mt-16">
+      <div className="flex flex-col gap-6 md:gap-10 lg:gap-10 mt-8 md:mt-12 lg:mt-10">
         {portfolioProjects.map((project, index) => (
           <ProjectCard key={index} project={project} index={index} />
         ))}

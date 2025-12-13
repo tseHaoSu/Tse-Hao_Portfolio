@@ -242,8 +242,8 @@
   @media (min-width: 1024px) {
     .project-card {
       border-radius: 1.5rem;
-      padding: 2rem;
-      padding-bottom: 2.5rem;
+      padding: 1.5rem;
+      padding-bottom: 1.75rem;
     }
   }
 
