@@ -44,7 +44,7 @@ export default function RootLayout({
       <body
         suppressHydrationWarning
         className={twMerge(
-          "bg-gray-900 text-white antialiased font-sans cursor-none",
+          "bg-gray-900 text-white antialiased font-sans lg:cursor-none",
           inter.variable,
           calistoga.variable
         )}

@@ -7,8 +7,28 @@ export const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [labelPosition, setLabelPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(true); // Default to true to avoid flash
+
+  // Detect mobile/touch devices
+  useEffect(() => {
+    const checkMobile = () => {
+      const isTouchDevice =
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia("(pointer: coarse)").matches;
+      const isSmallScreen = window.innerWidth < 1024;
+      setIsMobile(isTouchDevice || isSmallScreen);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
+    if (isMobile) return;
+
     const updatePosition = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
       setIsVisible(true);
@@ -25,10 +45,12 @@ export const CustomCursor = () => {
       window.removeEventListener("mousemove", updatePosition);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, []);
+  }, [isMobile]);
 
   // Smooth follow effect for the label
   useEffect(() => {
+    if (isMobile) return;
+
     const animate = () => {
       setLabelPosition((prev) => ({
         x: prev.x + (position.x - prev.x) * 0.25,
@@ -38,9 +60,9 @@ export const CustomCursor = () => {
 
     const animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
-  }, [position]);
+  }, [position, isMobile]);
 
-  if (!isVisible) return null;
+  if (!isVisible || isMobile) return null;
 
   return (
     <>

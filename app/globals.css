@@ -219,35 +219,30 @@
     }
   }
 
-  /* Project Card Styles */
+  /* Project Card Styles - Mobile First */
   .project-card {
     background-color: rgb(31 41 55);
-    border-radius: 1rem;
+    border-radius: 0.875rem;
     position: relative;
     z-index: 0;
     overflow: hidden;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    transition: all 1000ms ease-out;
+    padding: 1rem;
+    padding-bottom: 1.25rem;
+    transition: opacity 800ms ease-out, transform 800ms ease-out;
   }
 
   @media (min-width: 768px) {
     .project-card {
-      border-radius: 1.5rem;
-      padding-left: 3rem;
-      padding-right: 3rem;
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      padding-bottom: 1.75rem;
     }
   }
 
   @media (min-width: 1024px) {
     .project-card {
-      padding-left: 4rem;
-      padding-right: 4rem;
-      padding-top: 2.5rem;
+      border-radius: 1.5rem;
+      padding: 2rem;
       padding-bottom: 2.5rem;
     }
   }
@@ -257,13 +252,22 @@
     z-index: 10;
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent, rgb(0 0 0 / 0.7));
-    border-radius: 1rem;
-    outline: 2px solid rgb(255 255 255 / 0.2);
-    outline-offset: -2px;
+    background: linear-gradient(to bottom, transparent 60%, rgb(0 0 0 / 0.5));
+    border-radius: 0.875rem;
+    outline: 1px solid rgb(255 255 255 / 0.1);
+    outline-offset: -1px;
   }
 
   @media (min-width: 768px) {
+    .project-card::after {
+      border-radius: 1.25rem;
+      outline-width: 2px;
+      outline-offset: -2px;
+      outline-color: rgb(255 255 255 / 0.15);
+    }
+  }
+
+  @media (min-width: 1024px) {
     .project-card::after {
       border-radius: 1.5rem;
     }
@@ -290,51 +294,52 @@
     color: transparent;
   }
 
-  /* Gradient Border Button */
+  /* Gradient Border Button - Mobile First */
   .btn-gradient-border {
     background-color: transparent;
-    height: 2.5rem;
+    height: 2.75rem;
     width: 100%;
-    border-radius: 0.75rem;
+    border-radius: 0.625rem;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    transition: opacity 150ms;
+    gap: 0.375rem;
+    transition: opacity 200ms ease;
     position: relative;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
   }
 
   @media (min-width: 768px) {
     .btn-gradient-border {
-      height: 3rem;
+      height: 2.75rem;
       width: auto;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      margin-top: 1.5rem;
-      font-size: 1rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      font-size: 0.9375rem;
     }
   }
 
   @media (min-width: 1024px) {
     .btn-gradient-border {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
+      height: 3rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      font-size: 1rem;
+      border-radius: 0.75rem;
     }
-  }
 
-  .btn-gradient-border:hover {
-    opacity: 0.8;
+    .btn-gradient-border:hover {
+      opacity: 0.85;
+    }
   }
 
   .btn-gradient-border::before {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 0.75rem;
-    padding: 2px;
+    border-radius: 0.625rem;
+    padding: 1.5px;
     background: linear-gradient(to right, rgb(52 211 153), rgb(45 212 191));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -343,12 +348,26 @@
     z-index: -10;
   }
 
+  @media (min-width: 1024px) {
+    .btn-gradient-border::before {
+      border-radius: 0.75rem;
+      padding: 2px;
+    }
+  }
+
   .btn-gradient-border::after {
     content: '';
     position: absolute;
-    inset: 2px;
+    inset: 1.5px;
     background-color: rgb(31 41 55);
-    border-radius: 10px;
+    border-radius: 8px;
     z-index: -10;
+  }
+
+  @media (min-width: 1024px) {
+    .btn-gradient-border::after {
+      inset: 2px;
+      border-radius: 10px;
+    }
   }
 }
