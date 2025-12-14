@@ -48,8 +48,8 @@ const ProjectCard = ({
         isVisible
           ? "opacity-100 translate-x-0 scale-100"
           : index % 2 === 0
-          ? "opacity-0 -translate-x-32 scale-95"
-          : "opacity-0 translate-x-32 scale-95"
+          ? "opacity-0 -translate-x-4 md:-translate-x-32 scale-95"
+          : "opacity-0 translate-x-4 md:translate-x-32 scale-95"
       }`}
       style={{
         top: `${index * 20}px`,
