@@ -14,13 +14,48 @@ const calistoga = Calistoga({
 });
 
 export const metadata: Metadata = {
-  title: "Tse-Hao (Eastin) Su - Portfolio",
+  metadataBase: new URL("https://tsehaosu.com"),
+  title: {
+    default: "Tse-Hao (Eastin) Su - Full Stack Developer",
+    template: "%s | Tse-Hao Su",
+  },
   description:
-    "Full Stack Developer specializing in Next.js, React, and modern web technologies. Building exceptional digital experiences.",
+    "A fullstack developer who ships. Specializing in Next.js, React, TypeScript, and AI-powered web applications. View my projects and get in touch.",
+  keywords: [
+    "Full Stack Developer",
+    "Web Developer",
+    "React Developer",
+    "Next.js Developer",
+    "TypeScript",
+    "JavaScript",
+    "Frontend Developer",
+    "Backend Developer",
+    "AI Integration",
+    "Tse-Hao Su",
+    "Eastin Su",
+    "Portfolio",
+  ],
+  authors: [{ name: "Tse-Hao (Eastin) Su", url: "https://tsehaosu.com" }],
+  creator: "Tse-Hao Su",
+  publisher: "Tse-Hao Su",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://tsehaosu.com",
+  },
   openGraph: {
     title: "Tse-Hao (Eastin) Su - Full Stack Developer",
     description:
-      "Full Stack Developer specializing in Next.js, React, and modern web technologies",
+      "A fullstack developer who ships. Specializing in Next.js, React, TypeScript, and AI-powered web applications.",
     url: "https://tsehaosu.com",
     siteName: "Tse-Hao Su Portfolio",
     images: [
@@ -28,12 +63,24 @@ export const metadata: Metadata = {
         url: "/Meta.png",
         width: 1200,
         height: 630,
-        alt: "Tse-Hao Su Portfolio Preview",
+        alt: "Tse-Hao Su - Full Stack Developer Portfolio",
       },
     ],
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tse-Hao (Eastin) Su - Full Stack Developer",
+    description:
+      "A fullstack developer who ships. Specializing in Next.js, React, TypeScript, and AI-powered web applications.",
+    images: ["/Meta.png"],
+    creator: "@tsehaosu",
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
+  category: "technology",
 };
 
 export default function RootLayout({
