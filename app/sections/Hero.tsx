@@ -237,11 +237,7 @@ const Hero = () => {
               Welcome to My Portfolio
             </h1>
             <p className="mt-4 text-white/60 md:text-lg max-w-2xl mx-auto">
-              I&apos;m a coffee-fueled fullstack developer who turns complex
-              ideas into bite-sized, beautiful experiences. When I&apos;m not
-              crafting sleek UIs or obsessing over clean code at 2am, I&apos;m
-              integrating cutting-edge AI to build web applications that just
-              work—and look great doing it.
+              A fullstack developer who ships.
             </p>
             <div className="flex flex-col md:flex-row items-center gap-4 mt-8">
               <motion.button
