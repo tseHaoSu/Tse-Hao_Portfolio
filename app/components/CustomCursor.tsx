@@ -8,6 +8,7 @@ export const CustomCursor = () => {
   const [labelPosition, setLabelPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(true); // Default to true to avoid flash
+  const [isOverVideo, setIsOverVideo] = useState(false);
 
   // Detect mobile/touch devices
   useEffect(() => {
@@ -24,6 +25,22 @@ export const CustomCursor = () => {
     window.addEventListener("resize", checkMobile);
 
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Listen for video hover events
+  useEffect(() => {
+    const handleVideoHover = (e: CustomEvent<boolean>) => {
+      setIsOverVideo(e.detail);
+    };
+
+    window.addEventListener("videoHover", handleVideoHover as EventListener);
+
+    return () => {
+      window.removeEventListener(
+        "videoHover",
+        handleVideoHover as EventListener
+      );
+    };
   }, []);
 
   useEffect(() => {
@@ -62,7 +79,7 @@ export const CustomCursor = () => {
     return () => cancelAnimationFrame(animationFrame);
   }, [position, isMobile]);
 
-  if (!isVisible || isMobile) return null;
+  if (!isVisible || isMobile || isOverVideo) return null;
 
   return (
     <>
