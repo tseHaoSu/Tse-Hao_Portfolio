@@ -234,7 +234,7 @@ const Hero = () => {
               </div>
             </div>
             <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl tracking-tight">
-              Welcome to My Portfolio
+              Tse-Hao Su
             </h1>
             <p className="mt-4 text-white/60 md:text-lg max-w-2xl mx-auto">
               A fullstack developer who ships.
