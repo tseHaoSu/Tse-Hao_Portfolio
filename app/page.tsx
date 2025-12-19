@@ -1,5 +1,6 @@
 import Header from "@/app/sections/Header";
 import Hero from "@/app/sections/Hero";
+import VideoIntro from "@/app/sections/VideoIntro";
 import Projects from "@/app/sections/Projects";
 import Tape from "@/app/sections/Tape";
 import Testimonials from "@/app/sections/Testimonials";
@@ -12,6 +13,7 @@ export default function Home() {
     <div>
       <Header />
       <Hero />
+      <VideoIntro />
       <Projects />
       <Tape />
       <Testimonials />
