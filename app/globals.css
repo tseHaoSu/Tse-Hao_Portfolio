@@ -219,64 +219,118 @@
     }
   }
 
-  /* Project Card Styles - Mobile First */
+  /* Project Card Styles - Mobile First with improved spacing system */
   .project-card {
+    --card-padding: 1rem;
+    --card-radius: 0.875rem;
+    --image-radius: 0.625rem;
+
     background-color: rgb(31 41 55);
-    border-radius: 0.875rem;
+    border-radius: var(--card-radius);
     position: relative;
     z-index: 0;
     overflow: hidden;
-    padding: 1rem;
+    padding: var(--card-padding);
     padding-bottom: 1.25rem;
-    transition: opacity 800ms ease-out, transform 800ms ease-out;
+    transition:
+      opacity 700ms ease-out,
+      transform 700ms ease-out,
+      box-shadow 300ms ease;
   }
 
+  /* Tablet breakpoint - 768px */
   @media (min-width: 768px) {
     .project-card {
-      border-radius: 1.25rem;
-      padding: 1.5rem;
-      padding-bottom: 1.75rem;
+      --card-padding: 1.25rem;
+      --card-radius: 1.25rem;
+      --image-radius: 0.75rem;
+      padding-bottom: 1.5rem;
     }
   }
 
+  /* Desktop breakpoint - 1024px */
   @media (min-width: 1024px) {
     .project-card {
-      border-radius: 1.5rem;
-      padding: 1.5rem;
+      --card-padding: 1.5rem;
+      --card-radius: 1.5rem;
+      --image-radius: 0.875rem;
       padding-bottom: 1.75rem;
+    }
+
+    /* Subtle hover lift effect - desktop only */
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 20px 40px -12px rgb(0 0 0 / 0.4),
+        0 0 0 1px rgb(255 255 255 / 0.1);
     }
   }
 
+  /* Card border overlay with gradient fade */
   .project-card::after {
     content: '';
-    z-index: 10;
+    z-index: 30;
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 60%, rgb(0 0 0 / 0.5));
-    border-radius: 0.875rem;
-    outline: 1px solid rgb(255 255 255 / 0.1);
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgb(0 0 0 / 0.3) 100%
+    );
+    border-radius: var(--card-radius);
+    outline: 1px solid rgb(255 255 255 / 0.08);
     outline-offset: -1px;
+    pointer-events: none;
   }
 
   @media (min-width: 768px) {
     .project-card::after {
-      border-radius: 1.25rem;
-      outline-width: 2px;
-      outline-offset: -2px;
-      outline-color: rgb(255 255 255 / 0.15);
+      outline-width: 1.5px;
+      outline-color: rgb(255 255 255 / 0.1);
     }
   }
 
   @media (min-width: 1024px) {
     .project-card::after {
-      border-radius: 1.5rem;
+      outline-width: 2px;
+      outline-color: rgb(255 255 255 / 0.12);
+    }
+
+    .project-card:hover::after {
+      outline-color: rgb(110 231 183 / 0.2);
     }
   }
 
+  /* Grain texture overlay */
   .project-card-grain {
     position: absolute;
     inset: 0;
-    opacity: 0.05;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  /* Image wrapper - extends to card edges with negative margins */
+  .project-card-image-wrapper {
+    position: relative;
+    z-index: 10;
+    margin: calc(var(--card-padding) * -1);
+    margin-bottom: 0;
+    overflow: hidden;
+    border-radius: var(--card-radius) var(--card-radius) var(--image-radius) var(--image-radius);
+  }
+
+  /* Image with consistent aspect ratio and hover zoom */
+  .project-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    transition: transform 500ms ease;
+  }
+
+  @media (min-width: 1024px) {
+    .project-card:hover .project-card-image {
+      transform: scale(1.03);
+    }
   }
 
   /* Gradient Text */
@@ -294,24 +348,36 @@
     color: transparent;
   }
 
-  /* Gradient Border Button - Mobile First */
+  /* Gradient Border Button - Mobile First with 44px touch target */
   .btn-gradient-border {
+    --btn-radius: 0.625rem;
+    --btn-border: 1.5px;
+
     background-color: transparent;
-    height: 2.75rem;
+    height: 2.75rem; /* 44px - minimum touch target */
     width: 100%;
-    border-radius: 0.625rem;
+    border-radius: var(--btn-radius);
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.375rem;
-    transition: opacity 200ms ease;
+    gap: 0.5rem;
+    transition:
+      transform 200ms ease,
+      opacity 200ms ease;
     position: relative;
     font-size: 0.9375rem;
+    cursor: pointer;
+  }
+
+  /* Active state for mobile feedback */
+  .btn-gradient-border:active {
+    transform: scale(0.98);
   }
 
   @media (min-width: 768px) {
     .btn-gradient-border {
+      --btn-radius: 0.625rem;
       height: 2.75rem;
       width: auto;
       padding-left: 1.5rem;
@@ -322,52 +388,56 @@
 
   @media (min-width: 1024px) {
     .btn-gradient-border {
+      --btn-radius: 0.75rem;
+      --btn-border: 2px;
       height: 3rem;
       padding-left: 2rem;
       padding-right: 2rem;
       font-size: 1rem;
-      border-radius: 0.75rem;
     }
 
     .btn-gradient-border:hover {
-      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .btn-gradient-border:active {
+      transform: translateY(0);
     }
   }
 
+  /* Gradient border pseudo-element */
   .btn-gradient-border::before {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 0.625rem;
-    padding: 1.5px;
+    border-radius: var(--btn-radius);
+    padding: var(--btn-border);
     background: linear-gradient(to right, rgb(52 211 153), rgb(45 212 191));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     z-index: -10;
+    transition: opacity 200ms ease;
   }
 
   @media (min-width: 1024px) {
-    .btn-gradient-border::before {
-      border-radius: 0.75rem;
-      padding: 2px;
+    .btn-gradient-border:hover::before {
+      opacity: 0.85;
     }
   }
 
+  /* Background fill */
   .btn-gradient-border::after {
     content: '';
     position: absolute;
-    inset: 1.5px;
+    inset: var(--btn-border);
     background-color: rgb(31 41 55);
-    border-radius: 8px;
+    border-radius: calc(var(--btn-radius) - var(--btn-border));
     z-index: -10;
-  }
-
-  @media (min-width: 1024px) {
-    .btn-gradient-border::after {
-      inset: 2px;
-      border-radius: 10px;
-    }
   }
 }

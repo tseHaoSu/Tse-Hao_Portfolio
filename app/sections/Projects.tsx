@@ -8,11 +8,6 @@ import { ArrowUpRight, BadgeCheck } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-// Helper function to get consistent image sizing classes - mobile-first with aspect ratio
-const getImageClasses = () => {
-  return "w-full aspect-[4/3] object-cover md:aspect-[16/10] lg:aspect-auto lg:h-[320px]";
-};
-
 const ProjectCard = ({
   project,
   index,
@@ -44,76 +39,87 @@ const ProjectCard = ({
   return (
     <motion.div
       ref={cardRef}
-      className={`project-card sticky ${
+      className={`project-card group h-full flex flex-col transition-all duration-700 ease-out ${
         isVisible
-          ? "opacity-100 translate-x-0 scale-100"
-          : index % 2 === 0
-          ? "opacity-0 -translate-x-4 md:-translate-x-32 scale-95"
-          : "opacity-0 translate-x-4 md:translate-x-32 scale-95"
+          ? "opacity-100 translate-y-0 scale-100"
+          : "opacity-0 translate-y-8 scale-95"
       }`}
       style={{
-        top: `${index * 20}px`,
-        zIndex: portfolioProjects.length - index,
+        transitionDelay: `${index * 100}ms`,
       }}
     >
       <div
         className="project-card-grain"
         style={{ backgroundImage: `url(${grainImage.src})` }}
       ></div>
-      <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-8">
-        {/* Image - shown first on mobile for visual impact */}
-        <div className="relative z-10 -mx-4 -mt-4 mb-5 md:-mx-6 md:-mt-5 md:mb-6 lg:order-2 lg:m-0 lg:-mr-[35%] lg:-mb-6 lg:ml-2 overflow-hidden rounded-b-xl lg:rounded-xl">
-          <Image
-            src={project.image}
-            alt={project.title}
-            className={getImageClasses()}
-          />
-        </div>
 
-        {/* Content */}
-        <div className="relative z-20 lg:order-1 lg:flex lg:flex-col lg:justify-center">
-          <motion.div
-            className="gradient-text-emerald-sky inline-flex font-semibold uppercase tracking-widest text-[11px] md:text-xs gap-2"
-            initial={{ opacity: 0, y: -10 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <span>{project.company}</span>
-            <span>&bull;</span>
-            <span>{project.year}</span>
-          </motion.div>
-          <motion.h3
-            className="font-serif text-2xl md:text-2xl lg:text-3xl mt-2 md:mt-3 leading-tight"
-            initial={{ opacity: 0, y: -10 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-            transition={{ delay: 0.25, duration: 0.5 }}
-          >
-            {project.title}
-          </motion.h3>
-          <hr className="border-t border-white/10 mt-3 md:mt-4 lg:mt-3" />
-          <ul className="flex flex-col gap-2 md:gap-2.5 lg:gap-2 mt-3 md:mt-4 lg:mt-3">
-            {project.results.map((result, idx) => (
-              <motion.li
-                key={idx}
-                className="flex items-start gap-2.5 text-[15px] md:text-base lg:text-base text-white/75 leading-relaxed"
-                initial={{ opacity: 0, x: -20 }}
-                animate={
-                  isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
-                }
-                transition={{ delay: idx * 0.1 + 0.3, duration: 0.5 }}
-              >
-                <BadgeCheck className="w-5 h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 shrink-0 mt-0.5" />
-                <span>{result.title}</span>
-              </motion.li>
-            ))}
-          </ul>
-          <a href={project.link} className="block mt-4 md:mt-5 lg:mt-4">
-            <button className="btn-gradient-border group">
-              <span className="gradient-text-emerald">View Project</span>
-              <ArrowUpRight className="w-4 h-4 text-emerald-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </button>
-          </a>
-        </div>
+      {/* Image container - negative margins to extend to card edges */}
+      <div className="project-card-image-wrapper">
+        <Image
+          src={project.image}
+          alt={project.title}
+          className="project-card-image"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+        />
+      </div>
+
+      {/* Content area with consistent spacing */}
+      <div className="relative z-20 flex flex-col grow pt-4 md:pt-5">
+        {/* Company/Year badge */}
+        <motion.div
+          className="gradient-text-emerald-sky inline-flex font-semibold uppercase tracking-widest text-[10px] sm:text-[11px] gap-2"
+          initial={{ opacity: 0, y: -10 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          <span>{project.company}</span>
+          <span>&bull;</span>
+          <span>{project.year}</span>
+        </motion.div>
+
+        {/* Title with proper line height */}
+        <motion.h3
+          className="font-serif text-xl sm:text-2xl mt-2 md:mt-3 leading-snug"
+          initial={{ opacity: 0, y: -10 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+          transition={{ delay: 0.25, duration: 0.5 }}
+        >
+          {project.title}
+        </motion.h3>
+
+        {/* Divider with consistent margin */}
+        <hr className="border-t border-white/10 mt-3 md:mt-4" />
+
+        {/* Results list - grow pushes button down */}
+        <ul className="flex flex-col gap-2 md:gap-2.5 mt-3 md:mt-4 grow">
+          {project.results.map((result, idx) => (
+            <motion.li
+              key={idx}
+              className="flex items-start gap-2 text-sm md:text-[15px] text-white/70 leading-relaxed"
+              initial={{ opacity: 0, x: -20 }}
+              animate={
+                isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+              }
+              transition={{ delay: idx * 0.1 + 0.3, duration: 0.5 }}
+            >
+              <BadgeCheck className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-0.5 text-emerald-400/80" />
+              <span>{result.title}</span>
+            </motion.li>
+          ))}
+        </ul>
+
+        {/* CTA Button - consistent top margin */}
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block mt-4 md:mt-5"
+        >
+          <button className="btn-gradient-border group/btn">
+            <span className="gradient-text-emerald">View Project</span>
+            <ArrowUpRight className="w-4 h-4 text-emerald-400 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+          </button>
+        </a>
       </div>
     </motion.div>
   );
@@ -121,15 +127,16 @@ const ProjectCard = ({
 
 const Projects = () => {
   return (
-    <section id="projects" className="container py-12 md:py-16 lg:py-16">
+    <section id="projects" className="container py-16 md:py-20 lg:py-24">
       <SectionHeader
         title="Featured Projects"
-        eyebrow="Here are some of my recent projects:"
-        description="Check out my collection of full-stack projects—complete with rock-solid authentication, AI superpowers, and architectures that won't break when things get real. Built for scale, crafted with care."
+        eyebrow="Real Problems, Real Solutions"
+        description="Full-stack applications built with modern auth, AI integration, and scalable architecture."
       />
-      <div className="flex flex-col gap-6 md:gap-10 lg:gap-10 mt-8 md:mt-12 lg:mt-10">
+      {/* Mobile-first: single column, 2-column grid on md+ with consistent gaps */}
+      <div className="grid grid-cols-1 gap-5 mt-10 md:grid-cols-2 md:gap-6 md:mt-12 lg:gap-8 lg:mt-14">
         {portfolioProjects.map((project, index) => (
-          <ProjectCard key={index} project={project} index={index} />
+          <ProjectCard key={project.title} project={project} index={index} />
         ))}
       </div>
     </section>

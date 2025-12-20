@@ -230,7 +230,7 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-green-500 rounded-full animate-ping"></div>
               </div>
               <div className="text-sm font-medium">
-                Available for new projects
+                <span className="mr-1">Open to work!</span>
               </div>
             </div>
             <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl tracking-tight">
