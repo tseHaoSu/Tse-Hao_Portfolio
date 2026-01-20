@@ -4,7 +4,7 @@ import grainImage from "@/app/assets/images/grain.jpg";
 import SectionHeader from "@/app/components/SectionHeader";
 import { portfolioProjects } from "@/app/lib/data";
 import { motion } from "framer-motion";
-import { ArrowUpRight, BadgeCheck } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -16,7 +16,7 @@ const ProjectCard = ({
   index: number;
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,9 +37,12 @@ const ProjectCard = ({
   }, []);
 
   return (
-    <motion.div
+    <motion.a
       ref={cardRef}
-      className={`project-card group h-full flex flex-col transition-all duration-700 ease-out ${
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`project-card group h-full flex flex-col transition-all duration-700 ease-out cursor-pointer ${
         isVisible
           ? "opacity-100 translate-y-0 scale-100"
           : "opacity-0 translate-y-8 scale-95"
@@ -90,8 +93,8 @@ const ProjectCard = ({
         {/* Divider with consistent margin */}
         <hr className="border-t border-white/10 mt-3 md:mt-4" />
 
-        {/* Results list - grow pushes button down */}
-        <ul className="flex flex-col gap-2 md:gap-2.5 mt-3 md:mt-4 grow">
+        {/* Results list */}
+        <ul className="flex flex-col gap-2 md:gap-2.5 mt-3 md:mt-4">
           {project.results.map((result, idx) => (
             <motion.li
               key={idx}
@@ -107,21 +110,11 @@ const ProjectCard = ({
             </motion.li>
           ))}
         </ul>
-
-        {/* CTA Button - consistent top margin */}
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block mt-4 md:mt-5"
-        >
-          <button className="btn-gradient-border group/btn">
-            <span className="gradient-text-emerald">View Project</span>
-            <ArrowUpRight className="w-4 h-4 text-emerald-400 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-          </button>
-        </a>
       </div>
-    </motion.div>
+
+      {/* Hover overlay with emerald gradient */}
+      <div className="project-card-hover-overlay" />
+    </motion.a>
   );
 };
 
